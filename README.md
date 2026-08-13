@@ -29,7 +29,7 @@ supporting material.
 The algorithm description is available in two languages:
 
 - [Deutsche Dokumentation](docs/README_de.md)
-- [Englische Dokumentation](docs/README_en.md)
+- [English Documentation](docs/README_en.md)
 
 PDF-Versionen:
 - [Deutsches PDF](docs/Inkrementelles%20Z%C3%A4hlverfahren%20zur%20Erzeugung%20von%20Primzahlen_de.pdf)
