@@ -33,7 +33,7 @@ by Ralf Sieg.
 
 The algorithm description is available in two languages:
 - [English PDF](docs/Incremental%20Residue‑Class%20Method%20for%20Generating%20Prime%20Numbers.pdf)
-- [German PDF](docs/Inkrementelles%20Restklassen-Verfahren%20zur%20Erzeugung%20von%20Primzahlen.pdf)
+- [German PDF](docs/Inkrementelles%20Restklassen%E2%80%91Verfahren%20zur%20Erzeugung%20von%20Primzahlen.pdf)
 
 ---
 
