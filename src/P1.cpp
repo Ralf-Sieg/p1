@@ -1,16 +1,12 @@
-// P1.cpp : Incremental counting method for generating prime numbers
+// P1.cpp : Incremental Residue-Class Method for Generating Prime Numbers
 //
 
 #include <iostream>
-//#include <chrono>
 #include "DecimalCounter.h"
 #include "Counter.h"
 
 int main()
 {
-    //std::chrono::steady_clock::duration max_duration = std::chrono::minutes(5);
-    //const auto time_start = std::chrono::steady_clock::now();
-    
     std::vector<CPrimeDigit> vec_prime_digits;
 
     CBase256Counter counter(1); // counts in base-256 system, initialized with '0'
@@ -19,17 +15,17 @@ int main()
     CDecimalCounter decimal_counter('2'); // counts in decimal system
 
     ++counter; // 2 (stored as '1')
-    vec_prime_digits.emplace_back(counter.GetCounted()); // add a new place with the digit ‘0’ for prime number 2
+    vec_prime_digits.emplace_back(counter.GetCounted()); // add a new position with the digit ‘0’ for prime number 2
 
     while (true) // endlessly generating prime numbers
     {
         bool b_is_prime = true;
 
-        // Unlike the place-value system, when incrementing a number in this system, always all places are incremented by 1
+        // All positions of the prime number system are incremented by 1
         for (auto& digit : vec_prime_digits)
         {
             ++digit;
-            if (b_is_prime && digit.IsZero()) // if one digit is zero, it is not a prime number
+            if (b_is_prime && digit.IsZero()) // If, after incrementing, at least one position has the value '0', then the number is not prime
             {
                 b_is_prime = false;
             }
@@ -41,14 +37,8 @@ int main()
 
         if (b_is_prime)
         {
-            vec_prime_digits.emplace_back(counter.GetCounted()); // add a new place with the digit ‘0’ for the given prime number
+            vec_prime_digits.emplace_back(counter.GetCounted()); // For each newly discovered prime, a new position with digit '0' is added
             std::cout << decimal_counter.ToString() << "\n"; // Output the number readable format in decimal system
-
-            //const auto time_measure = std::chrono::steady_clock::now();
-            //if (const auto minutes = std::chrono::duration_cast<std::chrono::minutes>(time_measure - time_start); minutes >= max_duration)
-            //{
-            //    break;
-            //}
         }
     }
 }

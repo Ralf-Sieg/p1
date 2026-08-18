@@ -84,7 +84,7 @@ public:
 // used to count in prime number system
 class CPrimeDigit final : public CBase256Counter
 {
-	// The position in prime number system based on the prime number p consists of the digits ‘0’ through ‘p-1’.
+	// For each prime p, there exists a position with a digit range from '0' to 'p-1'
 	const std::vector<unsigned char> m_count_max; // p-1
 
 public:
@@ -99,7 +99,7 @@ public:
 	{
 		if (*this == m_count_max) // CCounter::operator==
 		{ 
-			SetZero(); // If the set of digits is exhausted when incrementing a place, the sequence starts again with the digit ‘0’
+			SetZero(); // When a position reaches its maximum value, it wraps around to '0'
 		}
 		else
 		{

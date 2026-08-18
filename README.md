@@ -1,39 +1,150 @@
-# Algorithm Incremental counting method for generating prime numbers
+# Incremental Residue‑Class Prime Generator (C++)
 
-This repository contains the formal description of the Algorithm 
-Incremental counting method for generating prime numbers and a
-minimal C++ example demonstrating its usage. The documentation is available
-in both German and English, and the example code is provided as lightweight
-supporting material.
+## Overview
+This repository contains a C++ implementation of an **incremental residue‑class method for generating prime numbers**, a technique that operates **without division, multiplication, or explicit modulo computations**.  
+Instead, each natural number is represented through a residue‑class vector over all known primes, and all residues are incremented when transitioning from \(n\) to \(n+1\).
 
-## Contents
+The method is:
 
-- **docs/**  
-  Contains the full algorithm description in PDF format, as well as
-  documentation-specific README files in German and English.  
-  All documentation is licensed under **CC BY 4.0**.
+- Fully incremental  
+- State‑lean and indefinitely extensible  
+- Extremely simple to implement  
+- Suitable for streaming and embedded environments  
+- Conceptually different from classical sieving techniques  
 
-- **src/**  
-  Contains a minimal C++ example (`p1.cpp`) that illustrates how the
-  algorithm can be applied.  
-  The example code is licensed under the **MIT License**.
+It is based on the paper:
 
-- **LICENSE**  
-  MIT License for the example code.
+**“Incremental Residue‑Class Method for Generating Prime Numbers” (2026)**  
+by Ralf Sieg.
 
-- **docs/LICENSE-DOCUMENTATION**  
-  CC BY 4.0 License for all documentation files.
+---
+
+## Key Features
+- Prime generation without modulo, division, or multiplication  
+- Pure incremental update rule  
+- One residue position per known prime  
+- Simple and compact C++ implementation  
+- Clear mathematical foundation  
+- Includes complexity analysis and comparison with classical methods
+
+---
 
 ## Documentation
 
 The algorithm description is available in two languages:
+- [English PDF](docs/Incremental%20Residue‑Class%20Method%20for%20Generating%20Prime%20Numbers_en.pdf)
+- [German PDF](docs/Inkrementelles%20Restklassen-Verfahren%20zur%20Erzeugung%20von%20Primzahlen_de.pdf)
 
-- [Deutsche Dokumentation](docs/README_de.md)
-- [English Documentation](docs/README_en.md)
+---
 
-PDF-Versionen:
-- [Deutsches PDF](docs/Inkrementelles%20Z%C3%A4hlverfahren%20zur%20Erzeugung%20von%20Primzahlen_de.pdf)
-- [English PDF](docs/Incremental%20counting%20method%20for%20generating%20prime%20numbers_en.pdf)
+## Motivation
+Classical prime sieves (e.g., the sieve of Eratosthenes) are extremely fast but **not incremental**.  
+This project explores a fundamentally different approach: a **streaming‑friendly**, **state‑lean**, incremental method that updates only residue values.
+
+This makes the algorithm ideal for:
+
+- Embedded systems  
+- Streaming pipelines  
+- Educational demonstrations  
+- Conceptual exploration of number systems  
+- Low‑state computation scenarios  
+
+---
+
+## Algorithm Summary
+
+### Residue‑Class Vector
+For each known prime \(p\), the algorithm stores:
+
+
+
+\[
+n \bmod p
+\]
+
+
+
+When moving from \(n\) to \(n+1\):
+
+
+
+\[
+(n+1) \bmod p = (n \bmod p + 1) \bmod p
+\]
+
+
+
+Thus:
+
+- All positions increment by 1  
+- Overflow wraps to “0”  
+- A number is **prime** if **no residue becomes “0”**  
+- When a new prime is found, a new position is added (starting at “0”)
+
+---
+
+## Example Table
+
+| Decimal | 2 | 3 | 5 | 7 | 11 |
+|--------|---|---|---|---|----|
+| 2 | 0 |   |   |   |   |
+| 3 | 1 | 0 |   |   |   |
+| 4 | 0 | 1 |   |   |   |
+| 5 | 1 | 2 | 0 |   |   |
+| 6 | 0 | 0 | 1 |   |   |
+| 7 | 1 | 1 | 2 | 0 |   |
+| 8 | 0 | 2 | 3 | 1 |   |
+| 9 | 1 | 0 | 4 | 2 |   |
+| 10 | 0 | 1 | 0 | 3 |   |
+| 11 | 1 | 2 | 1 | 4 | 0 |
+
+---
+
+## Complexity
+
+### Time Complexity
+
+
+\[
+T(N) = O\!\left(\frac{N^2}{\ln N}\right)
+\]
+
+
+
+### Space Complexity
+
+
+\[
+S(N) = O\!\left(\frac{N}{\ln N}\right)
+\]
+
+
+
+### Comparison
+
+| Method | Time | Space | Notes |
+|--------|------|--------|-------|
+| Incremental residue‑class method | \(O(N^2 / \ln N)\) | \(O(N / \ln N)\) | Simple, incremental, no division |
+| Sieve of Eratosthenes | \(O(N \log\log N)\) | \(O(N)\) | Very fast, not incremental |
+| Trial division | \(O(N \sqrt{N})\) | \(O(1)\) | Very slow |
+| Segmented sieve | \(O(N \log\log N)\) | \(O(N)\) | Memory‑optimized |
+
+---
+
+## Strengths
+- No division, multiplication, or modulo  
+- Fully incremental  
+- Indefinitely extensible  
+- Very simple implementation  
+- Ideal for streaming and embedded systems  
+
+---
+
+## Weaknesses
+- Asymptotically slower than modern sieves  
+- Not competitive for very large ranges  
+
+---
 
 ## Example Code
 
@@ -43,7 +154,11 @@ The C++ example demonstrating the algorithm can be found here:
 - `include/Counter.h`
 - `include/DecimalCounter.h`
 
-This example is intentionally minimal and serves only as a usage illustration.
+p1.cpp contains main() function and illustrates how the algorithm can be applied.
+The example is serves as a usage illustration. It uses a class 'CBase256Counter'
+holding digits in base 256 system to save storage space and for better performance.
+
+---
 
 ## License
 
@@ -52,10 +167,3 @@ This example is intentionally minimal and serves only as a usage illustration.
 
 - Example code: **MIT License**  
   See: `LICENSE`
-
-## Purpose
-
-This repository provides a clear and accessible description of Algorithm 
-Incremental counting method for generating prime numbers
-and a simple example implementation. It is intended for researchers, developers,
-and anyone interested in understanding or applying the algorithm.
