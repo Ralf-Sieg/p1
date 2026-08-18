@@ -58,9 +58,7 @@ For each known prime \(p\), the algorithm stores:
 
 
 
-\[
-n \bmod p
-\]
+n mod p
 
 
 
@@ -68,9 +66,7 @@ When moving from \(n\) to \(n+1\):
 
 
 
-\[
-(n+1) \bmod p = (n \bmod p + 1) \bmod p
-\]
+(n + 1) mod p = (n mod p + 1) mod p
 
 
 
@@ -105,29 +101,25 @@ Thus:
 ### Time Complexity
 
 
-\[
-T(N) = O\!\left(\frac{N^2}{\ln N}\right)
-\]
+T(N) = O(N² / ln(N))
 
 
 
 ### Space Complexity
 
 
-\[
-S(N) = O\!\left(\frac{N}{\ln N}\right)
-\]
+S(N) = O(N / ln(N))
 
 
 
 ### Comparison
 
 | Method | Time | Space | Notes |
-|--------|------|--------|-------|
-| Incremental residue‑class method | \(O(N^2 / \ln N)\) | \(O(N / \ln N)\) | Simple, incremental, no division |
-| Sieve of Eratosthenes | \(O(N \log\log N)\) | \(O(N)\) | Very fast, not incremental |
-| Trial division | \(O(N \sqrt{N})\) | \(O(1)\) | Very slow |
-| Segmented sieve | \(O(N \log\log N)\) | \(O(N)\) | Memory‑optimized |
+| --- | --- | --- | --- |
+| Incremental residue‑class method | O(N² / ln(N)) | O(N / ln(N)) | Simple, incremental, no division |
+| Sieve of Eratosthenes | O(N log log N) | O(N) | Very fast, not incremental |
+| Trial division | O(N √N) | O(1) | Extremely slow |
+| Segmented sieve | O(N log log N) | O(N) | Memory‑optimized |
 
 ---
 
@@ -154,7 +146,7 @@ The C++ example demonstrating the algorithm can be found here:
 - `include/Counter.h`
 - `include/DecimalCounter.h`
 
-p1.cpp contains main() function and illustrates how the algorithm can be applied.
+`p1.cpp` contains main() function and illustrates how the algorithm can be applied.
 The example is serves as a usage illustration. It uses a class 'CBase256Counter'
 holding digits in base 256 system to save storage space and for better performance.
 
