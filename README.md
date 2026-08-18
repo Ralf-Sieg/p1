@@ -7,7 +7,7 @@ Instead, each natural number is represented through a residue‑class vector ove
 The method is:
 
 - Fully incremental  
-- State‑lean and indefinitely extensible  
+- State‑lean and infinitely extensible  
 - Extremely simple to implement  
 - Suitable for streaming and embedded environments  
 - Conceptually different from classical sieving techniques  
@@ -126,7 +126,7 @@ S(N) = O(N / ln(N))
 ## Strengths
 - No division, multiplication, or modulo  
 - Fully incremental  
-- Indefinitely extensible  
+- Infinitely extensible  
 - Very simple implementation  
 - Ideal for streaming and embedded systems  
 
