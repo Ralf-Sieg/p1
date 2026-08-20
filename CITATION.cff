@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+title: "Incremental Prime Generator (C++)"
+abstract: "A minimal-state, incremental residue-class algorithm for generating prime numbers in C++, operating without division, multiplication, or explicit modulo computations."
+authors:
+  - name: "Ralf Helmut Sieg"
+    orcid: "https://orcid.org/0009-0001-8678-2300"
+version: "unversioned"
+date-released: "2026-08-20"
+repository-code: "https://github.com/Ralf-Sieg/p1"
+license: "CC BY for documentation, MIT for code"
+keywords:
+  - prime-numbers
+  - prime-generator
+  - number-theory
+  - incremental-algorithm
+  - residue-class
+  - minimal-state
+  - division-free
+  - cpp
+  - embedded
+  - streaming
